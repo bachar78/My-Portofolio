@@ -1,54 +1,56 @@
 .app__navbar {
+  position: fixed;
+  height: 8vh;
+  top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(225, 225, 225, 0.25);
+  background: rgba(225, 225, 225, 1);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(225, 225, 225, 015);
   position: fixed;
-  z-index: 2;
 }
 .app__navbar-logo {
+  flex: 1 0 10rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 30rem;
   img {
-    width: 35%;
-    height: 100%;
+    width: 10rem;
   }
 }
 
 .app__navbar-links {
   flex: 1;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   li {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    
+    margin-right: 2rem;
     &:hover {
       div {
         background: var(--secondary-color);
       }
     }
     div {
-      width: .7rem;
-      height: .7rem;
+      width: 0.7rem;
+      height: 0.7rem;
       background: transparent;
       border-radius: 50%;
       margin-top: 5px;
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
     a {
       color: var(--gray-color);
       text-decoration: none;
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       flex-direction: column;
       text-transform: uppercase;
       font-size: 1.2rem;
@@ -58,5 +60,72 @@
         color: var(--secondary-color);
       }
     }
+  }
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+.app__navbar-burger {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  background: var(--secondary-color);
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  svg {
+    width: 70%;
+    height: 70%;
+    color: var(--white-color);
+  }
+  @media screen and (min-width: 900px) {
+    display: none;
+  }
+}
+
+.app__navbar-menu {
+  position: fixed;
+  top: 8vh;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  width: 80%;
+  height: 100vh;
+background-color: var(--white-color);
+  background: url('../../assets/bgWhite.png');
+  background-repeat: repeat;
+  background-size: cover;
+  z-index: 15;
+  box-shadow: 0 0 20px rgba(168, 168, 168, 0.25);
+  ul {
+    list-style: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    li {
+      margin: 2rem 1rem;
+      a {
+        color: var(--gray-color);
+        text-decoration: none;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: var(--secondary-color);
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 900px) {
+    display: none;
   }
 }
