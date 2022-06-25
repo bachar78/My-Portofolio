@@ -5,6 +5,7 @@ import { HiMenuAlt4, HiX } from 'react-icons/hi'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
+  
   const [toggle, setToggle] = useState(false)
   return (
     <nav className='app__navbar'>
@@ -20,38 +21,42 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.85, ease: 'easeOut', type: 'tween' }}
-          className='app__navbar-burger'
-          onClick={() => setToggle(!toggle)}
-        >
-          {toggle ? <HiX /> : <HiMenuAlt4 />}
-        </motion.div>
-        <AnimatePresence>
-          {toggle && (
-            <motion.div
-              className='app__navbar-menu'
-              initial={{ x: 300, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 300, opacity: 0 }}
-              transition={{ duration: 0.85, ease: 'easeOut', type: 'tween' }}
-            >
-              <ul>
-                {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
-                  <li key={item}>
-                    <a href={`#${item}`} onClick={() => setToggle(false)}>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <motion.div
+        className='app__navbar-burger'
+        onClick={() => setToggle(!toggle)}
+        whileInView={
+          toggle
+            ? {
+                rotate: [0, -360],
+                background: 'red',
+              }
+            : { rotate: [-360, 0] }
+        }
+        transition={{ duration: 1, ease: 'easeOut', type: 'tween' }}
+      >
+        {toggle ? <HiX /> : <HiMenuAlt4 />}
+      </motion.div>
+      <AnimatePresence>
+        {toggle && (
+          <motion.div
+            className='app__navbar-menu'
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 300, opacity: 0 }}
+            transition={{ duration: 0.85, ease: 'easeOut', type: 'tween' }}
+          >
+            <ul>
+              {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
+                <li key={item}>
+                  <a href={`#${item}`} onClick={() => setToggle(false)}>
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }

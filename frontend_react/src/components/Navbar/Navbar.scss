@@ -8,11 +8,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(225, 225, 225, 1);
+  background: rgba(225, 225, 225, .1);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(225, 225, 225, 015);
   position: fixed;
+  z-index: 30;
 }
 .app__navbar-logo {
   flex: 1 0 10rem;
