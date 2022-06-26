@@ -1,6 +1,7 @@
 import './Header.scss'
 import { motion } from 'framer-motion'
 import { images } from '../../constants'
+import AppWrap from '../../wrapper/AppWrap'
 const scaleVariants = {
   whileInView: {
     scale: [0, 1],
