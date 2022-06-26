@@ -2,31 +2,15 @@ import './About.scss'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { images } from '../../constants'
-
-const abouts = [
-  {
-    title: 'Frontend Development',
-    description: 'I am a good web developer, pationat in React',
-    imgUrl: images.about01,
-  },
-  {
-    title: 'Backend Development',
-    description: 'I am a good web developer, pationat in React',
-    imgUrl: images.about02,
-  },
-  {
-    title: 'Design Development',
-    description: 'I am a good web developer, pationat in React',
-    imgUrl: images.about03,
-  },
-  {
-    title: 'MERN Stack',
-    description: 'I am a good web developer, pationat in React',
-    imgUrl: images.about04,
-  },
-]
+import { client, urlFor } from '../../client'
 
 const About = () => {
+  const [abouts, setAbouts] = useState([])
+  useEffect(() => {
+    const query = '*[_type == "abouts"]'
+    client.fetch(query).then((data) => setAbouts(data))
+  }, [])
+  
   return (
     <div className='app__about'>
       <h2 className='head-text'>
@@ -36,13 +20,13 @@ const About = () => {
       <div className='app__profiles'>
         {abouts.map((about, index) => (
           <motion.div
-            whileInView={{ opacity: [0,1] }}
+            whileInView={{ opacity: [0, 1] }}
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.6, type: 'tween' }}
             className='app__profile-item'
             key={about.title + index}
           >
-            <img src={about.imgUrl} alt={about.title} />
+            <img src={urlFor(about.imgUrl)} alt={about.title} />
             <h2 className='bold-text' style={{ marginTop: '1.5rem' }}>
               {about.title}
             </h2>
