@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { images } from '../../constants'
 import { client, urlFor } from '../../client'
+import { AppWrap } from '../../wrapper'
 
 const About = () => {
   const [abouts, setAbouts] = useState([])
@@ -40,4 +41,4 @@ const About = () => {
   )
 }
 
-export default About
+export default AppWrap(About, 'about')
